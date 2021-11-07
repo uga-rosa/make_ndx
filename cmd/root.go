@@ -47,7 +47,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 	rootCmd.Flags().StringVarP(&option.f, "input", "f", "", "Structure file: gro, pdb (required)")
 	rootCmd.MarkFlagRequired("f")
 	rootCmd.Flags().StringVarP(&option.o, "output", "o", "index.ndx", "Index file")
@@ -280,8 +279,8 @@ func writeGroups(g Group, output string) {
 		numbers := g[name]
 		for i := 0; i < len(numbers); i += 10 {
 			ends := i + 10
-			if ends >= len(numbers) {
-				ends = len(numbers) - 1
+			if ends > len(numbers) {
+				ends = len(numbers)
 			}
 			_, err := file.WriteString(strings.Join(numbers[i:ends], " ") + "\n")
 			check(err)
