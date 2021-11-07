@@ -51,6 +51,7 @@ func init() {
 	rootCmd.MarkFlagRequired("f")
 	rootCmd.Flags().StringVarP(&option.o, "output", "o", "index.ndx", "Index file")
 	rootCmd.Flags().StringVarP(&option.k, "combine", "c", "resnum", "combine rule. 'resnum'|'atomname'")
+	rootCmd.Flags().SortFlags = false
 }
 
 func check(e error) {
